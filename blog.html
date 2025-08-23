@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RDF News - Home</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+    body { background: #fff; color: #222; line-height: 1.6; }
+    a { text-decoration: none; color: #0077cc; }
+    header, nav, section, footer { padding: 20px; max-width: 1200px; margin: auto; }
+    nav { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; }
+    nav a { margin: 0 10px; font-weight: bold; color: #000; }
+    nav a:hover { color: #0077cc; }
+    .hero { display: flex; flex-direction: column; }
+    .hero img { width: 100%; height: auto; border-radius: 10px; }
+    .hero h2 { margin: 10px 0; font-size: 1.5rem; }
+    .hero p { color: #666; }
+
+    .grid-articles { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 30px; }
+    .article-box { border: 1px solid #ddd; padding: 10px; border-radius: 8px; background: #fafafa; }
+    .article-box img { width: 100%; height: 160px; object-fit: cover; border-radius: 5px; }
+    .article-box h4 { margin: 10px 0 5px; font-size: 1.1rem; }
+    .article-box p { font-size: 0.9rem; color: #555; }
+
+    footer { text-align: center; margin-top: 50px; padding: 40px 20px; background: #f0f0f0; }
+    @media screen and (max-width: 768px) {
+      nav { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div><strong>RDF NEWS</strong></div>
+    <div>
+      <a href="#">Home</a>
+      <a href="#">Latest</a>
+      <a href="#">Tech</a>
+      <a href="#">Science</a>
+      <a href="#">Review</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <img src="https://via.placeholder.com/1000x400" alt="Hero Article">
+  <small style="color:#0077cc; margin-top:10px;">HEALTH</small>
+  <h2>CDC Warns Doctors About a Mystery Bacterial Outbreak With No Clear Origin</h2>
+  <p>It's unknown how three people in three states caught the often-fatal tropical disease melioidosis, which isn't normally transmissible between humans.</p>
+</section>
+
+<section class="grid-articles">
+
+  <div class="article-box">
+    <img src="https://via.placeholder.com/300x160" alt="Mac">
+    <small>APPLE</small>
+    <h4>macOS Monterey Might Make You Want to Actually Update Your Mac</h4>
+    <p>Find out what new features could change the way you work and play on MacOS.</p>
+  </div>
+
+  <div class="article-box">
+    <img src="https://via.placeholder.com/300x160" alt="Weather">
+    <small>EXTREME WEATHER</small>
+    <h4>Firestorm in British Columbia Sparks 710,000 Bolts of Lightning</h4>
+    <p>'I Suspect It Will Get a Lot Worse', says weather expert after new data released.</p>
+  </div>
+
+  <div class="article-box">
+    <img src="https://via.placeholder.com/300x160" alt="Security">
+    <small>PRIVACY & SECURITY</small>
+    <h4>Vladimir Putin’s Thoughts About the Internet May Surprise You</h4>
+    <p>Discussion about digital surveillance and international online privacy laws.</p>
+  </div>
+
+  <div class="article-box">
+    <img src="https://via.placeholder.com/300x160" alt="iOS 15">
+    <small>APPLE</small>
+    <h4>iOS 15 Preview: What You Can Expect</h4>
+    <p>A closer look at the new features Apple will introduce with iOS 15 rollout.</p>
+  </div>
+
+  <div class="article-box">
+    <img src="https://via.placeholder.com/300x160" alt="VR">
+    <small>TECHNOLOGY</small>
+    <h4>Virtual Reality Is Changing the Way We Experience News</h4>
+    <p>More news outlets are exploring immersive journalism through VR and AR.</p>
+  </div>
+
+  <div class="article-box">
+    <img src="https://via.placeholder.com/300x160" alt="AI">
+    <small>SCIENCE</small>
+    <h4>Artificial Intelligence Now Helps Predict Earthquakes</h4>
+    <p>New machine learning models can analyze seismic data and detect patterns.</p>
+  </div>
+
+</section>
+
+<footer>
+  <p>&copy; 2025 RDF News. All rights reserved.</p>
+  <p>Follow us: 
+    <a href="#">Instagram</a> | 
+    <a href="#">Twitter</a> | 
+    <a href="#">Facebook</a>
+  </p>
+</footer>
+
+</body>
+</html>

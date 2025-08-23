@@ -1,0 +1,257 @@
+.section {
+  padding: 2rem 0;
+}
+
+.font-inter {
+  font-family: 'inter', sans-serif;
+}
+
+@keyframes glow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
+
+.animate-glow {
+  animation: glow 4s ease-in-out infinite;
+}
+
+.clip-bottom-round {
+  clip-path: ellipse(100% 85% at 50% 50%);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background-color: currentColor;
+  transition: width 0.8s ease-in-out;
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+.animate-blink {
+  animation: blink 1.5s infinite;
+}
+
+/* Dropdown hover for desktop */
+.dropdown-menu {
+  display: none;
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.social-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.social-icon:hover {
+  transform: scale(1.10);
+}
+
+.social-bubble {
+    width: 3.5rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    backdrop-filter: blur(8px);
+    background-color: rgba(255,255,255,0.2);
+  }
+
+  .floaty {
+    animation: floaty 4s ease-in-out infinite;
+  }
+
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  /* Hover behaviors */
+  .social-bubble i {
+    transition: color 0.3s ease;
+  }
+
+  .bubble-instagram { color: #E1306C; }
+  .bubble-instagram:hover {
+    background-color: #E1306C;
+    transform: scale(1.15);
+  }
+  .bubble-instagram:hover i {
+    color: #fff;
+  }
+
+  .bubble-linkedin { color: #0077b5; }
+  .bubble-linkedin:hover {
+    background-color: #0077b5;
+    transform: scale(1.15);
+  }
+  .bubble-linkedin:hover i {
+    color: #fff;
+  }
+
+  .bubble-github { color: #000000; }
+  .bubble-github:hover {
+    background-color: #000000;
+    transform: scale(1.15);
+  }
+  .bubble-github:hover i {
+    color: #fff;
+  }
+
+  .bubble-whatsapp { color: #25d366; }
+  .bubble-whatsapp:hover {
+    background-color: #25d366;
+    transform: scale(1.15);
+  }
+  .bubble-whatsapp:hover i {
+    color: #fff;
+  }
+
+  @keyframes marquee {
+  0% { transform: translateX(100%) }
+  100% { transform: translateX(-100%) }
+}
+.animate-marquee {
+  animation: marquee 60s linear infinite;
+
+}
+
+@keyframes textFloatPop {
+    0%   { transform: scale(1) translateY(0); }
+    50%  { transform: scale(1.1) translateY(-2px); }
+    100% { transform: scale(1) translateY(0); }
+  }
+
+  .text-float-pop {
+    animation: textFloatPop 0.3s ease-in-out;
+  }
+
+  /* <!-- Custom CSS untuk animasi --> */
+  @keyframes float-pop {
+    0% {
+      transform: scale(1) translateY(0);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    50% {
+      transform: scale(1.1) translateY(-6px);
+      box-shadow: 0 10px 15px rgba(124,58,237,0.4);
+    }
+    100% {
+      transform: scale(1) translateY(0);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+  }
+
+  .animate-float-pop {
+    animation: float-pop 0.3s ease;
+  }
+
+   @keyframes pulse-button {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+  .custom-pulse {
+    animation: pulse-button 1.5s infinite;
+  }
+
+  /* Header */
+   .nav-link {
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+    padding: 4px 0;
+    background-image: linear-gradient(to right, #4F46E5, #4F46E5);
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: 0% 2px; /* mulai dari 0% lebar */
+    transition: background-size 0.4s ease;
+  }
+
+  .nav-link:hover {
+    background-size: 100% 2px; /* melebar pelan */
+  }
+
+  /* Sembunyikan footer di HP */
+@media (max-width: 768px) {
+  footer {
+    display: none;
+  }
+}
+
+/* Footer tetap tampil di layar besar (desktop) */
+@media (min-width: 769px) {
+  footer {
+    display: block;
+  }
+}
+
+/* Versi Desktop */
+ body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+
+    nav ul.menu {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul.menu li a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .hamburger-button {
+      display: none;
+      font-size: 24px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* Responsive: kecilin layar desktop → tampil hamburger */
+    @media (max-width: 1024px) {
+      nav ul.menu {
+        display: none;
+        flex-direction: column;
+        background: #4CAF50;
+        padding: 10px;
+      }
+
+      .hamburger-button {
+        display: block;
+      }
+    }
+
+    /* Tombol link ke mobile (default: hidden) */
+    .mobile-link-btn {
+      display: none;
+      padding: 8px 12px;
+      background: #333;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
