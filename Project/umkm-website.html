@@ -1,0 +1,721 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toko UMKM - Produk Lokal Berkualitas</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    .hero-bg {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    .product-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    .cart-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #ef4444;
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mobile-menu {
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+    }
+    .mobile-menu.open {
+      transform: translateX(0);
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+  <!-- Header & Navigation -->
+  <header class="bg-white shadow-lg fixed w-full z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <!-- Logo -->
+        <div class="flex items-center">
+          <div class="bg-indigo-600 text-white p-2 rounded-lg">
+            <i class="fas fa-store text-xl"></i>
+          </div>
+          <span class="ml-2 text-xl font-bold text-indigo-600">TokoUMKM</span>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex space-x-8">
+          <a href="#home" class="text-gray-700 hover:text-indigo-600 font-medium">Beranda</a>
+          <a href="#products" class="text-gray-700 hover:text-indigo-600 font-medium">Produk</a>
+          <a href="#about" class="text-gray-700 hover:text-indigo-600 font-medium">Tentang</a>
+          <a href="#testimonials" class="text-gray-700 hover:text-indigo-600 font-medium">Testimoni</a>
+          <a href="#contact" class="text-gray-700 hover:text-indigo-600 font-medium">Kontak</a>
+        </nav>
+
+        <!-- Right Section -->
+        <div class="flex items-center space-x-4">
+          <!-- Cart Icon -->
+          <div class="relative">
+            <button id="cart-btn" class="text-gray-700 hover:text-indigo-600">
+              <i class="fas fa-shopping-cart text-xl"></i>
+              <span id="cart-count" class="cart-badge">0</span>
+            </button>
+          </div>
+          
+          <!-- Mobile Menu Button -->
+          <button id="mobile-menu-btn" class="md:hidden text-gray-700">
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu md:hidden fixed inset-0 bg-white z-40">
+      <div class="p-6">
+        <div class="flex justify-between items-center mb-8">
+          <div class="flex items-center">
+            <div class="bg-indigo-600 text-white p-2 rounded-lg">
+              <i class="fas fa-store text-xl"></i>
+            </div>
+            <span class="ml-2 text-xl font-bold text-indigo-600">TokoUMKM</span>
+          </div>
+          <button id="close-menu" class="text-gray-700">
+            <i class="fas fa-times text-xl"></i>
+          </button>
+        </div>
+        <nav class="space-y-4">
+          <a href="#home" class="block py-2 text-gray-700 hover:text-indigo-600 font-medium">Beranda</a>
+          <a href="#products" class="block py-2 text-gray-700 hover:text-indigo-600 font-medium">Produk</a>
+          <a href="#about" class="block py-2 text-gray-700 hover:text-indigo-600 font-medium">Tentang</a>
+          <a href="#testimonials" class="block py-2 text-gray-700 hover:text-indigo-600 font-medium">Testimoni</a>
+          <a href="#contact" class="block py-2 text-gray-700 hover:text-indigo-600 font-medium">Kontak</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero-bg text-white pt-24 pb-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+            Produk Lokal Berkualitas <br>Untuk Kebutuhan Anda
+          </h1>
+          <p class="text-xl mb-8 opacity-90">
+            Temukan berbagai produk UMKM terbaik dengan kualitas premium dan harga terjangkau. Dukung produk lokal, dukung perekonomian Indonesia!
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="#products" class="bg-white text-indigo-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-300 text-center">
+              <i class="fas fa-shopping-bag mr-2"></i>Belanja Sekarang
+            </a>
+            <a href="#about" class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-indigo-600 transition duration-300 text-center">
+              <i class="fas fa-info-circle mr-2"></i>Tentang Kami
+            </a>
+          </div>
+        </div>
+        <div class="relative">
+          <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+               alt="Produk UMKM" class="rounded-2xl shadow-2xl">
+          <div class="absolute -bottom-4 -left-4 bg-white text-indigo-600 p-4 rounded-lg shadow-lg">
+            <div class="text-2xl font-bold">100+</div>
+            <div class="text-sm">Produk Tersedia</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="bg-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-truck text-indigo-600 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Gratis Ongkir</h3>
+          <p class="text-gray-600">Gratis ongkos kirim untuk pembelian di atas Rp 200.000</p>
+        </div>
+        <div class="text-center">
+          <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-shield-alt text-green-600 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Kualitas Terjamin</h3>
+          <p class="text-gray-600">Produk dengan kualitas premium dan bahan terbaik</p>
+        </div>
+        <div class="text-center">
+          <div class="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-headset text-yellow-600 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Dukungan 24/7</h3>
+          <p class="text-gray-600">Customer service siap membantu kapan saja</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section id="products" class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Produk Unggulan Kami</h2>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+          Temukan berbagai produk berkualitas yang dibuat dengan penuh cinta dan dedikasi
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Product 1 -->
+        <div class="product-card bg-white rounded-xl shadow-md overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+               alt="Kerajinan Tangan" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Kerajinan Tangan Rotan</h3>
+            <p class="text-gray-600 mb-4">Kerajinan tangan dari rotan asli dengan desain elegan dan tahan lama</p>
+            <div class="flex justify-between items-center">
+              <span class="text-2xl font-bold text-indigo-600">Rp 150.000</span>
+              <button onclick="addToCart(1)" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
+                <i class="fas fa-cart-plus mr-2"></i>Beli
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card bg-white rounded-xl shadow-md overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+               alt="Makanan Tradisional" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Kue Tradisional</h3>
+            <p class="text-gray-600 mb-4">Kue tradisional dengan resep turun temurun, dibuat tanpa pengawet</p>
+            <div class="flex justify-between items-center">
+              <span class="text-2xl font-bold text-indigo-600">Rp 75.000</span>
+              <button onclick="addToCart(2)" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
+                <i class="fas fa-cart-plus mr-2"></i>Beli
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card bg-white rounded-xl shadow-md overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1595341888016-a392ef81b7de?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+               alt="Kosmetik Alami" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Kosmetik Alami</h3>
+            <p class="text-gray-600 mb-4">Kosmetik berbahan alami, aman untuk kulit dan ramah lingkungan</p>
+            <div class="flex justify-between items-center">
+              <span class="text-2xl font-bold text-indigo-600">Rp 120.000</span>
+              <button onclick="addToCart(3)" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
+                <i class="fas fa-cart-plus mr-2"></i>Beli
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card bg-white rounded-xl shadow-md overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+               alt="Batik Modern" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Batik Modern</h3>
+            <p class="text-gray-600 mb-4">Batik dengan desain modern, cocok untuk acara formal dan casual</p>
+            <div class="flex justify-between items-center">
+              <span class="text-2xl font-bold text-indigo-600">Rp 250.000</span>
+              <button onclick="addToCart(4)" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
+                <i class="fas fa-cart-plus mr-2"></i>Beli
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product-card bg-white rounded-xl shadow-md overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1595341888016-a392ef81b7de?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+               alt="Aksesoris" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Aksesoris Handmade</h3>
+            <p class="text-gray-600 mb-4">Aksesoris unik dan elegan dibuat dengan tangan oleh pengrajin lokal</p>
+            <div class="flex justify-between items-center">
+              <span class="text-2xl font-bold text-indigo-600">Rp 85.000</span>
+              <button onclick="addToCart(5)" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
+                <i class="fas fa-cart-plus mr-2"></i>Beli
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="product-card bg-white rounded-xl shadow-md overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+               alt="Minuman Herbal" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Minuman Herbal</h3>
+            <p class="text-gray-600 mb-4">Minuman kesehatan tradisional dengan khasiat alami untuk tubuh</p>
+            <div class="flex justify-between items-center">
+              <span class="text-2xl font-bold text-indigo-600">Rp 65.000</span>
+              <button onclick="addToCart(6)" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
+                <i class="fas fa-cart-plus mr-2"></i>Beli
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-12">
+        <a href="#products" class="bg-indigo-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-indigo-700 transition inline-flex items-center">
+          <i class="fas fa-eye mr-2"></i>Lihat Semua Produk
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+               alt="Tentang Kami" class="rounded-2xl shadow-lg">
+        </div>
+        <div>
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Tentang TokoUMKM</h2>
+          <p class="text-lg text-gray-600 mb-6">
+            TokoUMKM hadir sebagai wadah untuk mempromosikan produk-produk UMKM lokal berkualitas. 
+            Kami berkomitmen untuk mendukung pengusaha kecil dan menengah dalam mengembangkan bisnis mereka.
+          </p>
+          <div class="space-y-4">
+            <div class="flex items-center">
+              <div class="bg-indigo-100 p-2 rounded-full mr-4">
+                <i class="fas fa-check text-indigo-600"></i>
+              </div>
+              <span>100% Produk Lokal Indonesia</span>
+            </div>
+            <div class="flex items-center">
+              <div class="bg-indigo-100 p-2 rounded-full mr-4">
+                <i class="fas fa-check text-indigo-600"></i>
+              </div>
+              <span>Kualitas Terjamin dan Terpercaya</span>
+            </div>
+            <div class="flex items-center">
+              <div class="bg-indigo-100 p-2 rounded-full mr-4">
+                <i class="fas fa-check text-indigo-600"></i>
+              </div>
+              <span>Dukungan Penuh untuk Pengrajin Lokal</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Apa Kata Pelanggan?</h2>
+        <p class="text-xl text-gray-600">Testimoni dari pelanggan yang puas dengan produk kami</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-xl shadow-md">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center">
+              <i class="fas fa-user text-indigo-600"></i>
+            </div>
+            <div class="ml-4">
+              <h4 class="font-semibold">Budi Santoso</h4>
+              <p class="text-sm text-gray-600">Jakarta</p>
+            </div>
+          </div>
+          <p class="text-gray-600">"Produk kerajinan tangan sangat bagus kualitasnya. Pengiriman cepat dan packing rapi!"</p>
+          <div class="flex mt-4">
+            <i class="fas fa-star text-yellow-400"></i>
+            <i class="fas fa-star text-yellow-400"></i>
+            <i class="fas fa-star text-yellow-400"></i>
+            <i class="fas fa-star text-yellow-400"></i>
+            <i class="fas fa-star text-yellow-400"></i>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-md">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center">
+              <i class="fas fa-user text-indigo-600"></i>
+            </div>
+            <div class="ml-4">
+              <h4 class="font-semibold">Siti Rahayu</h4>
+              <p class="text-sm text-gray-600">Bandung</p>
+            </div>
+          </div>
+          <p class="text-gray-600">"Kue tradisionalnya enak banget! Rasanya autentik dan bahan-bahannya fresh."</p>
+          <div class="flex mt-4">
+            <i class="fas fa-star text-yellow-400"></i>
+            <i class="fas fa-star text-yellow-400"></i>
+            <i class="fas fa-star text-yellow-400"></i>
+            <i class="fas fa-star text-yellow-400"></i>
+            <i class="fas fa-star text-yellow-400"></i>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-md">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center">
+              <i class="fas fa-user text-indigo-600"></i>
+            </div>
+            <div class="ml-4">
+              <h4 class="font-semibold">Ahmad Rizki</h4>
+              <p class="text-sm text-gray-600">Surabaya</p>
+            </div>
+          </div>
+          <p class="text-gray-600">"Batik modernnya sangat cocok untuk acara formal. Desainnya kekinian dan bahannya nyaman dipakai."</p>
+          <div class="flex mt-4">
+            <i class="fas fa-star text-yellow-400"></i>
+            <i class="fas fa-star text-yellow-400"></i>
+            <i class="fas fa-star text-yellow-400"></i>
+            <i class="fas fa-star text-yellow-400"></i>
+            <i class="fas fa-star text-yellow-400"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Hubungi Kami</h2>
+        <p class="text-xl text-gray-600">Kami siap membantu Anda 24/7</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-12">
+        <div>
+          <form class="space-y-6" id="contact-form">
+            <div>
+              <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Nama Lengkap</label>
+              <input type="text" id="name" name="name" required 
+                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+              <input type="email" id="email" name="email" required 
+                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+            </div>
+            <div>
+              <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Pesan</label>
+              <textarea id="message" name="message" rows="5" required 
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"></textarea>
+            </div>
+            <button type="submit" class="w-full bg-indigo-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-indigo-700 transition">
+              <i class="fas fa-paper-plane mr-2"></i>Kirim Pesan
+            </button>
+          </form>
+        </div>
+
+        <div class="space-y-6">
+          <div class="flex items-center">
+            <div class="bg-indigo-100 p-3 rounded-full mr-4">
+              <i class="fas fa-map-marker-alt text-indigo-600"></i>
+            </div>
+            <div>
+              <h4 class="font-semibold">Alamat</h4>
+              <p class="text-gray-600">Jl. UMKM No. 123, Jakarta Pusat</p>
+            </div>
+          </div>
+          <div class="flex items-center">
+            <div class="bg-indigo-100 p-3 rounded-full mr-4">
+              <i class="fas fa-phone text-indigo-600"></i>
+            </div>
+            <div>
+              <h4 class="font-semibold">Telepon</h4>
+              <p class="text-gray-600">+62 812-3456-7890</p>
+            </div>
+          </div>
+          <div class="flex items-center">
+            <div class="bg-indigo-100 p-3 rounded-full mr-4">
+              <i class="fas fa-envelope text-indigo-600"></i>
+            </div>
+            <div>
+              <h4 class="font-semibold">Email</h4>
+              <p class="text-gray-600">info@tokoumkm.com</p>
+            </div>
+          </div>
+          <div class="flex items-center">
+            <div class="bg-indigo-100 p-3 rounded-full mr-4">
+              <i class="fas fa-clock text-indigo-600"></i>
+            </div>
+            <div>
+              <h4 class="font-semibold">Jam Operasional</h4>
+              <p class="text-gray-600">Senin - Minggu, 08:00 - 22:00 WIB</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-8">
+        <div>
+          <div class="flex items-center mb-4">
+            <div class="bg-indigo-600 text-white p-2 rounded-lg">
+              <i class="fas fa-store text-xl"></i>
+            </div>
+            <span class="ml-2 text-xl font-bold">TokoUMKM</span>
+          </div>
+          <p class="text-gray-400 mb-4">
+            Menyediakan produk UMKM berkualitas dengan harga terjangkau untuk mendukung perekonomian lokal.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white transition">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Produk</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white transition">Kerajinan Tangan</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition">Makanan Tradisional</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition">Kosmetik Alami</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition">Batik Modern</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Tautan</h4>
+          <ul class="space-y-2">
+            <li><a href="#home" class="text-gray-400 hover:text-white transition">Beranda</a></li>
+            <li><a href="#products" class="text-gray-400 hover:text-white transition">Produk</a></li>
+            <li><a href="#about" class="text-gray-400 hover:text-white transition">Tentang</a></li>
+            <li><a href="#contact" class="text-gray-400 hover:text-white transition">Kontak</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+          <p class="text-gray-400 mb-4">Dapatkan update produk terbaru dan promo spesial</p>
+          <form class="flex">
+            <input type="email" placeholder="Email Anda" 
+                   class="flex-1 px-4 py-2 rounded-l-lg focus:outline-none text-gray-800">
+            <button type="submit" class="bg-indigo-600 px-4 py-2 rounded-r-lg hover:bg-indigo-700 transition">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+        <p class="text-gray-400">&copy; 2024 TokoUMKM. All rights reserved. Dibuat dengan ❤️ oleh Robby Dwi Firmansyah X RDF Studio untuk UMKM Indonesia</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Modal -->
+  <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden justify-end z-50">
+    <div class="bg-white w-full md:w-96 h-full transform translate-x-full transition-transform duration-300">
+      <div class="p-6">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-xl font-semibold">Keranjang Belanja</h3>
+          <button onclick="closeCart()" class="text-gray-500 hover:text-gray-700">
+            <i class="fas fa-times text-xl"></i>
+          </button>
+        </div>
+        <div id="cart-items" class="space-y-4 mb-6">
+          <!-- Cart items will be dynamically added here -->
+        </div>
+        <div class="border-t pt-4">
+          <div class="flex justify-between items-center mb-4">
+            <span class="font-semibold">Total:</span>
+            <span id="cart-total" class="font-bold text-indigo-600">Rp 0</span>
+          </div>
+          <button class="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition">
+            <i class="fas fa-shopping-bag mr-2"></i>Checkout
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div id="success-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden justify-center items-center z-50">
+    <div class="bg-white p-6 rounded-lg max-w-sm mx-4">
+      <div class="text-center">
+        <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+          <i class="fas fa-check text-green-600 text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Berhasil!</h3>
+        <p class="text-gray-600 mb-4" id="success-message">Pesan berhasil dikirim</p>
+        <button onclick="closeSuccessModal()" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">
+          Tutup
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Mobile Menu
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const closeMenuBtn = document.getElementById('close-menu');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const cartBtn = document.getElementById('cart-btn');
+    const cartModal = document.getElementById('cart-modal');
+    const cartCount = document.getElementById('cart-count');
+    const cartItems = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+    const successModal = document.getElementById('success-modal');
+
+    let cart = [];
+    let total = 0;
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.add('open');
+    });
+
+    closeMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+        mobileMenu.classList.remove('open');
+      }
+    });
+
+    // Cart functionality
+    cartBtn.addEventListener('click', () => {
+      cartModal.classList.remove('hidden');
+      setTimeout(() => {
+        cartModal.querySelector('div').style.transform = 'translateX(0)';
+      }, 10);
+    });
+
+    function closeCart() {
+      cartModal.querySelector('div').style.transform = 'translateX(100%)';
+      setTimeout(() => {
+        cartModal.classList.add('hidden');
+      }, 300);
+    }
+
+    function addToCart(productId) {
+      const products = {
+        1: { name: 'Kerajinan Tangan Rotan', price: 150000 },
+        2: { name: 'Kue Tradisional', price: 75000 },
+        3: { name: 'Kosmetik Alami', price: 120000 },
+        4: { name: 'Batik Modern', price: 250000 },
+        5: { name: 'Aksesoris Handmade', price: 85000 },
+        6: { name: 'Minuman Herbal', price: 65000 }
+      };
+
+      const product = products[productId];
+      cart.push(product);
+      total += product.price;
+      
+      updateCart();
+      showSuccess('Produk berhasil ditambahkan ke keranjang!');
+    }
+
+    function updateCart() {
+      cartCount.textContent = cart.length;
+      cartItems.innerHTML = '';
+      
+      cart.forEach((item, index) => {
+        const cartItem = document.createElement('div');
+        cartItem.className = 'flex justify-between items-center border-b pb-2';
+        cartItem.innerHTML = `
+          <div>
+            <h4 class="font-semibold">${item.name}</h4>
+            <p class="text-sm text-gray-600">Rp ${item.price.toLocaleString()}</p>
+          </div>
+          <button onclick="removeFromCart(${index})" class="text-red-500 hover:text-red-700">
+            <i class="fas fa-trash"></i>
+          </button>
+        `;
+        cartItems.appendChild(cartItem);
+      });
+      
+      cartTotal.textContent = `Rp ${total.toLocaleString()}`;
+    }
+
+    function removeFromCart(index) {
+      total -= cart[index].price;
+      cart.splice(index, 1);
+      updateCart();
+    }
+
+    // Contact form
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      showSuccess('Pesan Anda berhasil dikirim! Kami akan menghubungi Anda segera.');
+      this.reset();
+    });
+
+    function showSuccess(message) {
+      document.getElementById('success-message').textContent = message;
+      successModal.classList.remove('hidden');
+    }
+
+    function closeSuccessModal() {
+      successModal.classList.add('hidden');
+    }
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Close modals when clicking outside
+    document.addEventListener('click', (e) => {
+      if (e.target === cartModal) {
+        closeCart();
+      }
+      if (e.target === successModal) {
+        closeSuccessModal();
+      }
+    });
+
+    // Initialize
+    updateCart();
+  </script>
+</body>
+</html>
