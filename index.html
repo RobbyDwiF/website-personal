@@ -123,8 +123,7 @@
           <div class="p-4 flex flex-col justify-between flex-grow">
             <div>
               <h3 class="text-base font-bold mb-1 group-hover:text-indigo-600 transition">Personal Blog System</h3>
-              <!-- Perbaikan: Mengubah mb-3 menjadi mb-8 untuk jarak yang lebih lebar antara deskripsi dan tombol -->
-              <p class="text-sm text-gray-600 mb-8">
+              <p class="text-sm text-gray-600 mb-8"></p>
                 Sistem blog pribadi yang ringan dan fleksibel, cocok untuk menulis artikel, berbagi pengalaman, dan mengelola konten secara mudah & efisien.
               </p>
             </div>
@@ -135,12 +134,13 @@
                 </span>
               </div>
               <div class="flex justify-between items-center gap-2">
-                <a href="#" class="bg-indigo-600 text-white text-xs px-4 py-1 rounded-full hover:bg-indigo-700 transition">Lihat Dulu</a>
-                <button class="text-indigo-600 border border-indigo-600 px-3 py-1 text-xs rounded-full hover:bg-indigo-100 transition">
-                  <i class="fas fa-shopping-cart text-sm"></i> Tambah ke Keranjang
-                </button>
-                <button class="text-indigo-600 border border-indigo-600 px-3 py-1 text-xs rounded-full hover:bg-indigo-100 transition">
-                  Konsultasi Dulu
+                <a href="portfolio.html" class="bg-indigo-600 text-white text-xs px-4 py-2 rounded-full hover:bg-indigo-700 transition flex items-center justify-center gap-1">
+                  <i class="fas fa-eye text-xs"></i>
+                  Lihat Dulu
+                </a>
+                <button onclick="openWhatsApp('Personal Blog System')" class="whatsapp-button text-xs flex items-center justify-center gap-1">
+                  <i class="fab fa-whatsapp text-xs"></i>
+                  Konsultasi
                 </button>
               </div>
             </div>
@@ -156,7 +156,6 @@
           <div class="p-4 flex flex-col justify-between flex-grow">
             <div>
               <h3 class="text-base font-bold mb-1 group-hover:text-indigo-600 transition">Laravel Store</h3>
-              <!-- Perbaikan: Mengubah mb-3 menjadi mb-8 untuk jarak yang lebih lebar antara deskripsi dan tombol -->
               <p class="text-sm text-gray-600 mb-8">
                 Bangun toko online modern berbasis Laravel, lengkap dengan keranjang belanja, checkout otomatis, dashboard produk, dan sistem pembayaran siap pakai.
               </p>
@@ -168,12 +167,13 @@
                 </span>
               </div>
               <div class="flex justify-between items-center gap-2">
-                <a href="#" class="bg-indigo-600 text-white text-xs px-4 py-1 rounded-full hover:bg-indigo-700 transition">Lihat Dulu</a>
-                <button class="text-indigo-600 border border-indigo-600 px-3 py-1 text-xs rounded-full hover:bg-indigo-100 transition">
-                  <i class="fas fa-shopping-cart text-sm"></i> Tambah ke Keranjang
-                </button>
-                <button class="text-indigo-600 border border-indigo-600 px-3 py-1 text-xs rounded-full hover:bg-indigo-100 transition">
-                  Konsultasi Dulu
+                <a href="portfolio.html" class="bg-indigo-600 text-white text-xs px-4 py-2 rounded-full hover:bg-indigo-700 transition flex items-center justify-center gap-1">
+                  <i class="fas fa-eye text-xs"></i>
+                  Lihat Dulu
+                </a>
+                <button onclick="openWhatsApp('Laravel Store')" class="whatsapp-button text-xs flex items-center justify-center gap-1">
+                  <i class="fab fa-whatsapp text-xs"></i>
+                  Konsultasi
                 </button>
               </div>
             </div>
@@ -189,7 +189,6 @@
           <div class="p-4 flex flex-col justify-between flex-grow">
             <div>
               <h3 class="text-base font-bold mb-1 group-hover:text-indigo-600 transition">Website untuk UMKM</h3>
-              <!-- Perbaikan: Mengubah mb-3 menjadi mb-8 untuk jarak yang lebih lebar antara deskripsi dan tombol -->
               <p class="text-sm text-gray-600 mb-8">
                 Bantu bisnismu tampil lebih profesional, dipercaya pelanggan, dan makin laris lewat website interaktif & mobile-friendly.
               </p>
@@ -201,12 +200,13 @@
                 </span>
               </div>
               <div class="flex justify-between items-center gap-2">
-                <a href="#" class="bg-indigo-600 text-white text-xs px-4 py-1 rounded-full hover:bg-indigo-700 transition">Lihat Dulu</a>
-                <button class="text-indigo-600 border border-indigo-600 px-3 py-1 text-xs rounded-full hover:bg-indigo-100 transition">
-                  <i class="fas fa-shopping-cart text-sm"></i> Tambah ke Keranjang
-                </button>
-                <button class="text-indigo-600 border border-indigo-600 px-3 py-1 text-xs rounded-full hover:bg-indigo-100 transition">
-                  Konsultasi Dulu
+                <a href="portfolio.html" class="bg-indigo-600 text-white text-xs px-4 py-2 rounded-full hover:bg-indigo-700 transition flex items-center justify-center gap-1">
+                  <i class="fas fa-eye text-xs"></i>
+                  Lihat Dulu
+                </a>
+                <button onclick="openWhatsApp('Website UMKM')" class="whatsapp-button text-xs flex items-center justify-center gap-1">
+                  <i class="fab fa-whatsapp text-xs"></i>
+                  Konsultasi
                 </button>
               </div>
             </div>
@@ -215,7 +215,6 @@
       </div>
 
       <!-- Mobile Swiper -->
-      <!-- Perbaikan: Menambahkan pb-10 untuk menambah jarak bawah di mode mobile -->
       <div class="md:hidden mt-2 pb-10">
         <div class="swiper proyek-swiper px-2">
           <div class="swiper-wrapper">
@@ -240,13 +239,11 @@
             Penawaran Terbaik! Hanya 400.000 Ribu-an
               </span>
             </div>
-            <div class="flex justify-between items-center gap-2">
+            <div class="flex justify-between items-center gap-1">
               <a href="#" class="bg-indigo-600 text-white text-xs px-4 py-1 rounded-full hover:bg-indigo-700 transition">Lihat Dulu</a>
-              <button class="text-indigo-600 border border-indigo-600 px-3 py-1 text-xs rounded-full hover:bg-indigo-100 transition">
-            <i class="fas fa-shopping-cart text-sm"></i> Tambah ke Keranjang
-              </button>
-              <button class="text-indigo-600 border border-indigo-600 px-3 py-1 text-xs rounded-full hover:bg-indigo-100 transition">
-            Konsultasi Dulu
+              <button class="whatsapp-button text-xs flex items-center justify-center gap-1">
+                <i class="fab fa-whatsapp text-xs"></i>
+                Konsultasi
               </button>
             </div>
           </div>
@@ -274,13 +271,11 @@
             Ajukan Penawaran! Atur Kesepakatan
               </span>
             </div>
-            <div class="flex justify-between items-center gap-2">
+            <div class="flex justify-between items-center gap-1">
               <a href="#" class="bg-indigo-600 text-white text-xs px-4 py-1 rounded-full hover:bg-indigo-700 transition">Lihat Dulu</a>
-              <button class="text-indigo-600 border border-indigo-600 px-3 py-1 text-xs rounded-full hover:bg-indigo-100 transition">
-            <i class="fas fa-shopping-cart text-sm"></i> Tambah ke Keranjang
-              </button>
-              <button class="text-indigo-600 border border-indigo-600 px-3 py-1 text-xs rounded-full hover:bg-indigo-100 transition">
-            Konsultasi Dulu
+              <button class="whatsapp-button text-xs flex items-center justify-center gap-1">
+                <i class="fab fa-whatsapp text-xs"></i>
+                Konsultasi
               </button>
             </div>
           </div>
@@ -308,13 +303,11 @@
             Tentukan Bersama! Mulai dari 400.000 Ribu-an
               </span>
             </div>
-            <div class="flex justify-between items-center gap-2">
+            <div class="flex justify-between items-center gap-1">
               <a href="#" class="bg-indigo-600 text-white text-xs px-4 py-1 rounded-full hover:bg-indigo-700 transition">Lihat Dulu</a>
-              <button class="text-indigo-600 border border-indigo-600 px-3 py-1 text-xs rounded-full hover:bg-indigo-100 transition">
-            <i class="fas fa-shopping-cart text-sm"></i> Tambah ke Keranjang
-              </button>
-              <button class="text-indigo-600 border border-indigo-600 px-3 py-1 text-xs rounded-full hover:bg-indigo-100 transition">
-            Konsultasi Dulu
+              <button class="whatsapp-button text-xs flex items-center justify-center gap-1">
+                <i class="fab fa-whatsapp text-xs"></i>
+                Konsultasi
               </button>
             </div>
           </div>

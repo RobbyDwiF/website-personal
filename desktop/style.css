@@ -126,6 +126,55 @@
     color: #fff;
   }
 
+  /* WhatsApp button hover effects */
+  button:hover {
+    transition: all 0.3s ease;
+  }
+  
+  button:active {
+    transform: scale(0.95);
+  }
+
+  /* WhatsApp button styling */
+  .whatsapp-button {
+    transition: all 0.3s ease;
+    border-radius: 9999px;
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    min-width: fit-content;
+    border: 1px solid #25d366;
+    color: #25d366;
+    background: transparent;
+  }
+
+  .whatsapp-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+    background-color: #25d366;
+    color: white;
+  }
+
+  /* Mobile WhatsApp buttons */
+  .mobile-whatsapp-button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.7rem;
+    border-radius: 9999px;
+    transition: all 0.2s ease;
+    border: 1px solid #4f46e5;
+    color: #4f46e5;
+    background: transparent;
+  }
+
+  .mobile-whatsapp-button:hover {
+    background-color: #4f46e5;
+    color: white;
+    transform: scale(1.05);
+  }
+
   @keyframes marquee {
   0% { transform: translateX(100%) }
   100% { transform: translateX(-100%) }

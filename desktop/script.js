@@ -91,7 +91,63 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("Tombol Baca Selengkapnya diklik");
     });
   }
+
+  // Setup WhatsApp buttons
+  setupWhatsAppButtons();
 });
+
+// WhatsApp Functionality
+function openWhatsApp(serviceName = '') {
+  const message = serviceName 
+    ? `Halo RDF Studio 👋\nSaya tertarik dengan layanan: ${serviceName}\nBisa konsultasi lebih lanjut?`
+    : `Halo RDF Studio 👋\nSaya ingin konsultasi tentang layanan Anda.`;
+  
+  const waUrl = "https://wa.me/628984877678?text=" + encodeURIComponent(message);
+  window.open(waUrl, "_blank");
+}
+
+function setupWhatsAppButtons() {
+  // Setup semua tombol WhatsApp dengan onclick yang mengandung openWhatsApp
+  const whatsappButtons = document.querySelectorAll('button[onclick*="openWhatsApp"]');
+  
+  whatsappButtons.forEach(button => {
+    // Simpan service name dari onclick attribute
+    const onclickAttr = button.getAttribute('onclick');
+    const serviceMatch = onclickAttr.match(/openWhatsApp\('([^']+)'\)/);
+    const serviceName = serviceMatch ? serviceMatch[1] : '';
+    
+    // Hapus attribute onclick lama
+    button.removeAttribute('onclick');
+    
+    // Tambahkan event listener baru
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      openWhatsApp(serviceName);
+    });
+  });
+
+  // Setup untuk tombol-tombol dengan teks "Konsultasi" (desktop)
+  const consultButtons = document.querySelectorAll('button');
+  consultButtons.forEach(button => {
+    if (button.textContent.includes('Konsultasi') && !button.hasAttribute('onclick')) {
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        openWhatsApp();
+      });
+    }
+  });
+
+  // Setup untuk tombol-tombol dengan teks "Konsultasi Dulu" (mobile)
+  const consultDuluButtons = document.querySelectorAll('button');
+  consultDuluButtons.forEach(button => {
+    if (button.textContent.includes('Konsultasi Dulu')) {
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        openWhatsApp();
+      });
+    }
+  });
+}
 
 
  
