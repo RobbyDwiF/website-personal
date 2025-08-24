@@ -190,68 +190,108 @@
     background-size: 100% 2px; /* melebar pelan */
   }
 
-  /* Sembunyikan footer di HP */
-@media (max-width: 768px) {
+  /* Sembunyikan footer di HP
+/* @media (max-width: 768px) {
   footer {
     display: none;
   }
-}
+} */
 
 /* Footer tetap tampil di layar besar (desktop) */
-@media (min-width: 769px) {
+/* @media (min-width: 769px) {
   footer {
     display: block;
   }
+} */
+
+/* Versi Desktop
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
 }
 
-/* Versi Desktop */
- body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-    }
+nav ul.menu {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+}
 
-    nav ul.menu {
-      list-style: none;
-      display: flex;
-      gap: 15px;
-      margin: 0;
-      padding: 0;
-    }
+nav ul.menu li a {
+  color: white;
+  text-decoration: none;
+}
 
-    nav ul.menu li a {
-      color: white;
-      text-decoration: none;
-    }
+.hamburger-button {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+} */
 
-    .hamburger-button {
-      display: none;
-      font-size: 24px;
-      background: none;
-      border: none;
-      color: white;
-      cursor: pointer;
-    }
+/* Responsive: kecilin layar desktop → tampil hamburger */
+/* @media (max-width: 1024px) {
+  nav ul.menu {
+    display: none;
+    flex-direction: column;
+    background: #4CAF50;
+    padding: 10px;
+  }
 
-    /* Responsive: kecilin layar desktop → tampil hamburger */
-    @media (max-width: 1024px) {
-      nav ul.menu {
-        display: none;
-        flex-direction: column;
-        background: #4CAF50;
-        padding: 10px;
-      }
+  .hamburger-button {
+    display: block;
+  }
+} */
 
-      .hamburger-button {
-        display: block;
-      }
-    }
+/* Tombol link ke mobile (default: hidden) */
+/* .mobile-link-btn {
+  display: none;
+  padding: 8px 12px;
+  background: #333;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+} */
 
-    /* Tombol link ke mobile (default: hidden) */
-    .mobile-link-btn {
-      display: none;
-      padding: 8px 12px;
-      background: #333;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-    }
+/* Proyek Unggulan Section Responsive Fixes */
+.proyek-unggulan-section {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 0; /* Remove bottom margin */
+}
+
+.proyek-unggulan-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom right, #c7d2fe, #fbcfe8, #fdf2f8);
+  z-index: -1;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .proyek-unggulan-section {
+    margin-bottom: 0 !important;
+    padding-bottom: 1.5rem !important;
+  }
+  
+  .proyek-unggulan-section .swiper-wrapper {
+    padding-bottom: 1rem;
+  }
+  
+  .proyek-unggulan-section .swiper-pagination {
+    bottom: 0;
+    margin-top: 1rem;
+  }
+}
+
+/* Ensure gradient covers entire section without white gaps */
+.bg-gradient-to-br {
+  background-attachment: local;
+}

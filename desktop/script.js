@@ -1,60 +1,51 @@
 
-  (function autoSwitchVersion() {
-    let devtoolsOpen = false;
-    let threshold = 160; // batas lebar perbedaan untuk deteksi DevTools
-
-    function detectDevTools() {
-      const widthThreshold = window.outerWidth - window.innerWidth > threshold;
-      const heightThreshold =
-        window.outerHeight - window.innerHeight > threshold;
-
-      if ((widthThreshold || heightThreshold) && !devtoolsOpen) {
-        // DevTools baru dibuka
-        devtoolsOpen = true;
-        if (
-          window.innerWidth <= 1024 &&
-          window.location.pathname.toLowerCase().includes("index.html")
-        ) {
-          window.location.replace(
-            encodeURIComponent("Mobile Version") + "/tampilan mobile.html"
-          );
-        }
-      } else if (!(widthThreshold || heightThreshold) && devtoolsOpen) {
-        // DevTools baru ditutup
-        devtoolsOpen = false;
-        if (!window.location.pathname.toLowerCase().includes("index.html")) {
-          window.location.replace("../index.html");
-        }
-      }
-    }
-
-    // Cek setiap setengah detik
-    setInterval(detectDevTools, 500);
-
-    // Cek ukuran layar juga
-    function checkSize() {
-      const isMobile = window.innerWidth <= 1024;
-      const path = window.location.pathname.toLowerCase();
-
-      if (path.includes("index.html") && isMobile) {
-        window.location.replace(
-          encodeURIComponent("Mobile Version") + "/tampilan mobile.html"
-        );
-      }
-      if (path.includes("tampilan mobile.html") && !isMobile) {
-        window.location.replace("../index.html");
-      }
-    }
-
-    checkSize();
-    window.addEventListener("resize", checkSize);
-  })();
-
-
-
-
-// WhatsApp Touch Form
+// Mobile Menu Functionality
 document.addEventListener("DOMContentLoaded", function () {
+  // Mobile menu toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const closeMenu = document.getElementById('closeMenu');
+
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.style.display = 'flex';
+      setTimeout(() => {
+        mobileMenu.style.transform = 'translateY(0)';
+      }, 10);
+      document.body.style.overflow = 'hidden';
+    });
+  }
+
+  if (closeMenu) {
+    closeMenu.addEventListener('click', closeMobileMenu);
+  }
+
+  // Close menu when clicking on mobile menu links
+  const mobileMenuLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : [];
+  mobileMenuLinks.forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
+  });
+
+  function closeMobileMenu() {
+    if (mobileMenu) {
+      mobileMenu.style.transform = 'translateY(-100%)';
+      setTimeout(() => {
+        mobileMenu.style.display = 'none';
+        document.body.style.overflow = '';
+      }, 300);
+    }
+  }
+
+  // Close menu on resize to desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768 && mobileMenu) {
+      mobileMenu.style.display = 'none';
+      mobileMenu.style.transform = 'translateY(-100%)';
+      document.body.style.overflow = '';
+    }
+  });
+
+  // WhatsApp Touch Form
   const formWa = document.getElementById("waTouchForm");
   if (formWa) {
     formWa.addEventListener("submit", function (e) {
@@ -70,28 +61,36 @@ document.addEventListener("DOMContentLoaded", function () {
       window.open(waUrl, "_blank");
     });
   }
-});
 
-const portfolioBtn = document.getElementById("portfolioBtn");
-const exploreBtn = document.getElementById("exploreBtn");
+  // Button animations - hanya jika elemen ada
+  const portfolioBtn = document.getElementById("portfolioBtn");
+  const exploreBtn = document.getElementById("exploreBtn");
 
-function animateFloat(el) {
-  el.classList.add("animate-float-pop");
-  setTimeout(() => {
-    el.classList.remove("animate-float-pop");
-  }, 300);
-}
+  function animateFloat(el) {
+    if (el) {
+      el.classList.add("animate-float-pop");
+      setTimeout(() => {
+        el.classList.remove("animate-float-pop");
+      }, 300);
+    }
+  }
 
-portfolioBtn.addEventListener("click", () => animateFloat(portfolioBtn));
-exploreBtn.addEventListener("click", () => animateFloat(exploreBtn));
+  if (portfolioBtn) {
+    portfolioBtn.addEventListener("click", () => animateFloat(portfolioBtn));
+  }
 
-document.querySelectorAll(".nav-link").forEach((link) => {
-  link.addEventListener("click", () => {
-    link.classList.add("text-float-pop");
-    setTimeout(() => {
-      link.classList.remove("text-float-pop");
-    }, 300);
-  });
+  if (exploreBtn) {
+    exploreBtn.addEventListener("click", () => animateFloat(exploreBtn));
+  }
+
+  // Handler untuk tombol Baca Selengkapnya jika ada
+  const readMoreBtn = document.getElementById("readMoreBtn");
+  if (readMoreBtn) {
+    readMoreBtn.addEventListener("click", function() {
+      // Tambahkan fungsi untuk tombol Baca Selengkapnya di sini
+      console.log("Tombol Baca Selengkapnya diklik");
+    });
+  }
 });
 
 
