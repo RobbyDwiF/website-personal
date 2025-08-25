@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="id" class="transition-colors duration-500"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Saya - Fullstack Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; transition: background 0.5s, color 0.5s;}
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);}
+        .card-hover { transition: transform 0.3s, box-shadow 0.3s;}
+        .card-hover:hover { transform: translateY(-5px) scale(1.03); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);}
+        .skill-bar-fill { width: 0; transition: width 1.2s cubic-bezier(0.25,1,0.5,1);}
+        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s;}
+        .fade-in.visible { opacity: 1; transform: translateY(0);}
+        .typing-animation::after { content: '|'; animation: blink 1s infinite;}
+        @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0;} }
+        .floating { animation: float 3s ease-in-out infinite;}
+        @keyframes float { 0%,100%{transform:translateY(0px);} 50%{transform:translateY(-10px);} }
+        .nav-item { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:8px 12px; border-radius:9999px; font-size:0.75rem; font-weight:500; color:#4B5563; transition:background-color 0.2s, color 0.2s; position:relative; overflow:hidden;}
+        .nav-item i { font-size:1.125rem; margin-bottom:4px;}
+        .nav-item:hover { background-color:#F3F4F6;}
+        .nav-item.active { background-color:#EDE9FE; color:#7C3AED;}
+        .nav-item:active::after {
+            content: '';
+            position: absolute;
+            left: 50%; top: 50%;
+            width: 100px; height: 100px;
+            background: rgba(124,58,237,0.2);
+            border-radius: 50%;
+            transform: translate(-50%,-50%) scale(0);
+            animation: ripple 0.5s linear;
+            pointer-events: none;
+        }
+        @keyframes ripple { to { transform: translate(-50%,-50%) scale(1); opacity:0; } }
+        #backToTop { display:none; position:fixed; right:1rem; bottom:1.5rem; z-index:50; background:#7C3AED; color:white; border-radius:9999px; padding:0.75rem 1rem; box-shadow:0 4px 16px rgba(124,58,237,0.15); font-size:1.5rem; cursor:pointer; transition:background 0.2s;}
+        #backToTop:hover { background:#5B21B6;}
+        .dark body { background: #18181b !important; color: #e5e7eb !important;}
+        .dark .gradient-bg { background: linear-gradient(135deg, #312e81 0%, #581c87 100%) !important;}
+        .dark .bg-white { background: #23272f !important;}
+        .dark .text-gray-800 { color: #e5e7eb !important;}
+        .dark .text-gray-700 { color: #d1d5db !important;}
+        .dark .text-gray-600 { color: #a1a1aa !important;}
+        .dark .text-gray-500 { color: #71717a !important;}
+        .dark .bg-gray-50 { background: #27272a !important;}
+        .dark .bg-gray-100 { background: #18181b !important;}
+        .dark .nav-item { color: #a1a1aa !important;}
+        .dark .nav-item.active { background-color: #312e81 !important; color: #c7d2fe !important;}
+        .dark .hover\:bg-gray-100:hover { background: #23272f !important;}
+        .dark .hover\:bg-gray-200:hover { background: #23272f !important;}
+        .dark #backToTop { background: #312e81 !important;}
+        .dark #backToTop:hover { background: #581c87 !important;}
+        @media (max-width: 640px) {
+            .container { max-width:100vw !important; padding-left:0.5rem !important; padding-right:0.5rem !important;}
+            header .py-16 { padding-top:2.5rem; padding-bottom:2.5rem;}
+            h1 { font-size:2rem !important;}
+            .tab-content { padding:0.5rem !important;}
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen transition-colors duration-500">
+    <!-- Header -->
+    <header class="gradient-bg text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-10"></div>
+        <div class="relative z-10 container mx-auto px-6 py-16 text-center">
+            <!-- Dark Mode Toggle (Mobile) -->
+            <div class="absolute top-4 right-4 sm:hidden z-20">
+                <button id="darkModeToggleMobile" class="bg-black bg-opacity-30 text-white hover:bg-opacity-50 transition-colors shadow-md card-hover w-10 h-10 rounded-full flex items-center justify-center p-0">
+                    <i class="fas fa-moon"></i>
+                    <span id="darkModeTextMobile" class="sr-only">Dark Mode</span>
+                </button>
+            </div>
+            <div class="floating mb-6">
+                <div class="w-24 h-24 sm:w-32 sm:h-32 mx-auto bg-white rounded-full flex items-center justify-center text-5xl sm:text-6xl shadow-lg animate-bounce">
+                    <i class="fas fa-user-tie text-purple-600"></i>
+                </div>
+            </div>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-2 bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent drop-shadow-lg animate__animated animate__fadeInDown" id="nama">Robby Dwi Firmansyah</h1>
+            <p class="text-lg sm:text-xl md:text-2xl opacity-90 typing-animation" id="title"></p>
+            <div class="flex flex-col sm:flex-row justify-center flex-wrap gap-4 mt-8">
+                <button onclick="scrollToSection('about')" class="bg-white text-purple-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition-colors flex items-center space-x-2 shadow-md card-hover">
+                    <i class="fas fa-user"></i>
+                    <span>Tentang Saya</span>
+                </button>
+                <button onclick="scrollToSection('contact')" class="border-2 border-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-purple-600 transition-colors flex items-center space-x-2 card-hover">
+                    <i class="fas fa-paper-plane"></i>
+                    <span>Kontak</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="bg-white shadow-md sticky top-0 z-20">
+        <div class="container mx-auto flex justify-center items-center space-x-2 sm:space-x-4 p-2 overflow-x-auto">
+            <div class="flex justify-center items-center w-full">
+                <button class="nav-item nav-btn-mobile" data-tab="about"><i class="fas fa-clipboard-user"></i><span class="nav-label">Tentang</span></button>
+                <button class="nav-item nav-btn-mobile" data-tab="education"><i class="fas fa-graduation-cap"></i><span class="nav-label">Pendidikan</span></button>
+                <button class="nav-item nav-btn-mobile" data-tab="skills"><i class="fas fa-laptop-code"></i><span class="nav-label">Keahlian</span></button>
+                <button class="nav-item nav-btn-mobile" data-tab="projects"><i class="fas fa-rocket"></i><span class="nav-label">Proyek</span></button>
+                <button class="nav-item nav-btn-mobile" data-tab="experience"><i class="fas fa-briefcase"></i><span class="nav-label">Pengalaman</span></button>
+                <button class="nav-item nav-btn-mobile" data-tab="certificates"><i class="fas fa-certificate"></i><span class="nav-label">Sertifikat</span></button>
+            </div>
+            <!-- Dark Mode Toggle (Desktop) -->
+            <button id="darkModeToggle" class="nav-item bg-black bg-opacity-30 text-white hover:bg-opacity-50 transition-colors shadow-md card-hover w-10 h-10 rounded-full flex items-center justify-center p-0 sm:flex hidden" style="margin-left:auto;">
+                <i class="fas fa-moon"></i>
+                <span id="darkModeText" class="sr-only">Dark Mode</span>
+            </button>
+        </div>
+        <style>
+            @media (max-width: 640px) {
+                .nav-btn-mobile {
+                    padding: 8px 6px !important;
+                    font-size: 1.1rem !important;
+                    min-width: 48px;
+                    flex-direction: column;
+                }
+                .nav-label {
+                    font-size: 0.7rem !important;
+                    margin-top: 2px;
+                }
+                .nav-item i {
+                    font-size: 1.3rem !important;
+                }
+                #darkModeToggle {
+                    display: none !important;
+                }
+            }
+            @media (min-width: 641px) {
+                #darkModeToggleMobile {
+                    display: none !important;
+                }
+            }
+        </style>
+        <script>
+            document.querySelectorAll('.nav-btn-mobile').forEach(btn => {
+                btn.addEventListener('touchstart', function() {
+                    this.classList.add('bg-purple-100', 'text-purple-700');
+                });
+                btn.addEventListener('touchend', function() {
+                    setTimeout(() => {
+                        this.classList.remove('bg-purple-100', 'text-purple-700');
+                    }, 250);
+                });
+            });
+
+            // Dark mode toggle for mobile
+            const darkModeToggleMobile = document.getElementById('darkModeToggleMobile');
+            const darkModeTextMobile = document.getElementById('darkModeTextMobile');
+            
+            function toggleDarkMode() {
+                document.documentElement.classList.toggle('dark');
+                const isDark = document.documentElement.classList.contains('dark');
+                
+                // Update both toggle texts
+                if (darkModeTextMobile) {
+                    darkModeTextMobile.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+                }
+                if (darkModeText) {
+                    darkModeText.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+                }
+                
+                // Update icons
+                const moonIcons = document.querySelectorAll('#darkModeToggle i, #darkModeToggleMobile i');
+                moonIcons.forEach(icon => {
+                    if (isDark) {
+                        icon.classList.remove('fa-moon');
+                        icon.classList.add('fa-sun');
+                    } else {
+                        icon.classList.remove('fa-sun');
+                        icon.classList.add('fa-moon');
+                    }
+                });
+            }
+
+            if (darkModeToggleMobile) {
+                darkModeToggleMobile.addEventListener('click', toggleDarkMode);
+            }
+        </script>
+    </nav>
+
+    <!-- Content Sections -->
+    <main class="container mx-auto px-2 sm:px-6 py-8">
+        <!-- About Section -->
+        <section id="about" class="tab-content">
+            <div class="bg-white rounded-xl shadow-lg p-4 sm:p-6 md:p-8 fade-in">
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 flex items-center"><i class="fas fa-user-tie mr-3 text-purple-600"></i>Tentang Saya</h2>
+                <p class="text-gray-700 leading-relaxed mb-4 animate__animated animate__fadeInLeft">Halo! Saya adalah seorang Fullstack Web Developer yang passionate dalam menciptakan solusi digital inovatif. Perjalanan saya dimulai dari lulusan SMK jurusan Teknik Komputer dan Jaringan, kemudian melanjutkan dengan mengikuti bootcamp intensive Fullstack Web Development.</p>
+                <p class="text-gray-700 leading-relaxed animate__animated animate__fadeInRight">Saya memiliki kemampuan untuk mengembangkan aplikasi web dari frontend hingga backend, dengan fokus pada user experience yang optimal dan kode yang clean & maintainable.</p>
+                <div class="grid grid-cols-2 gap-4 mt-8">
+<div class="text-center p-4 bg-gradient-to-r from-blue-100 to-blue-300 rounded-lg card-hover animate__animated animate__zoomIn"><div class="text-2xl font-bold text-blue-600"><1</div><div class="text-sm text-gray-600">Tahun Pengalaman</div></div>
+                    <div class="text-center p-4 bg-gradient-to-r from-green-100 to-green-300 rounded-lg card-hover animate__animated animate__zoomIn"><div class="text-2xl font-bold text-green-600">15+</div><div class="text-sm text-gray-600">Proyek Selesai</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="tab-content hidden">
+            <div class="bg-white rounded-xl shadow-lg p-4 sm:p-6 md:p-8 fade-in">
+            <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-6 flex items-center">
+            <i class="fas fa-graduation-cap mr-3 text-indigo-600"></i>Pendidikan
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- SMK Sejahtera Surabaya -->
+            <div class="card-hover bg-gradient-to-br from-blue-50 via-indigo-100 to-purple-100 rounded-xl p-6 flex flex-col items-center text-center shadow-lg animate__animated animate__fadeInLeft">
+            <div class="flex items-center justify-center mb-4">
+            <i class="fas fa-school text-3xl text-blue-500 mr-2"></i>
+            <span class="font-bold text-lg text-indigo-700">SMK Sejahtera Surabaya</span>
+            </div>
+            <div class="text-sm text-gray-600 mb-2">Teknik Komputer dan Jaringan<br><span class="text-xs text-gray-400">(2016-2019)</span></div>
+            <div class="flex space-x-3 mt-3">
+            <a href="https://www.instagram.com/smksejahterasby/" target="_blank" class="bg-indigo-100 hover:bg-indigo-200 text-indigo-600 px-3 py-2 rounded-full flex items-center space-x-2 transition-colors shadow">
+            <i class="fab fa-instagram"></i>
+            <span>Instagram</span>
+            </a>
+            <a href="https://smksejahterasby.sch.id/" target="_blank" class="bg-blue-100 hover:bg-blue-200 text-blue-600 px-3 py-2 rounded-full flex items-center space-x-2 transition-colors shadow">
+            <i class="fas fa-globe"></i>
+            <span>Website</span>
+            </a>
+            </div>
+            </div>
+            <!-- Eduwork Bootcamp -->
+            <div class="card-hover bg-gradient-to-br from-purple-50 via-pink-100 to-yellow-100 rounded-xl p-6 flex flex-col items-center text-center shadow-lg animate__animated animate__fadeInRight">
+            <div class="flex items-center justify-center mb-4">
+            <i class="fas fa-laptop-code text-3xl text-purple-500 mr-2"></i>
+            <span class="font-bold text-lg text-pink-700">Bootcamp Fullstack Web Development</span>
+            </div>
+            <div class="text-sm text-gray-600 mb-2">Eduwork Indonesia<br><span class="text-xs text-gray-400">(2020)</span></div>
+            <div class="flex space-x-3 mt-3">
+            <a href="https://www.instagram.com/eduwork.id/" target="_blank" class="bg-pink-100 hover:bg-pink-200 text-pink-600 px-3 py-2 rounded-full flex items-center space-x-2 transition-colors shadow">
+            <i class="fab fa-instagram"></i>
+            <span>Instagram</span>
+            </a>
+            <a href="https://eduwork.id/" target="_blank" class="bg-yellow-100 hover:bg-yellow-200 text-yellow-600 px-3 py-2 rounded-full flex items-center space-x-2 transition-colors shadow">
+            <i class="fas fa-globe"></i>
+            <span>Website</span>
+            </a>
+            </div>
+            </div>
+            </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="tab-content hidden">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-xl shadow-lg p-4 sm:p-6 fade-in">
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-6 flex items-center"><i class="fas fa-palette mr-3 text-blue-500"></i>Frontend</h3>
+                    <div class="space-y-5">
+                        <div class="skill-item"><div class="flex justify-between mb-1"><span class="font-medium text-gray-700">React.js</span><span class="text-gray-500">90%</span></div><div class="w-full bg-gradient-to-r from-blue-200 to-blue-400 rounded-full h-2.5"><div class="skill-bar-fill bg-blue-500 h-2.5 rounded-full" data-width="90%"></div></div></div>
+                        <div class="skill-item"><div class="flex justify-between mb-1"><span class="font-medium text-gray-700">JavaScript (ES6+)</span><span class="text-gray-500">85%</span></div><div class="w-full bg-gradient-to-r from-yellow-200 to-yellow-400 rounded-full h-2.5"><div class="skill-bar-fill bg-yellow-500 h-2.5 rounded-full" data-width="85%"></div></div></div>
+                        <div class="skill-item"><div class="flex justify-between mb-1"><span class="font-medium text-gray-700">HTML & CSS</span><span class="text-gray-500">95%</span></div><div class="w-full bg-gradient-to-r from-red-200 to-pink-400 rounded-full h-2.5"><div class="skill-bar-fill bg-red-500 h-2.5 rounded-full" data-width="95%"></div></div></div>
+                        <div class="skill-item"><div class="flex justify-between mb-1"><span class="font-medium text-gray-700">Tailwind CSS</span><span class="text-gray-500">90%</span></div><div class="w-full bg-gradient-to-r from-teal-200 to-teal-400 rounded-full h-2.5"><div class="skill-bar-fill bg-teal-500 h-2.5 rounded-full" data-width="90%"></div></div></div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-4 sm:p-6 fade-in">
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-6 flex items-center"><i class="fas fa-cogs mr-3 text-gray-600"></i>Backend</h3>
+                    <div class="space-y-5">
+                        <div class="skill-item"><div class="flex justify-between mb-1"><span class="font-medium text-gray-700">Node.js</span><span class="text-gray-500">80%</span></div><div class="w-full bg-gradient-to-r from-green-200 to-green-400 rounded-full h-2.5"><div class="skill-bar-fill bg-green-600 h-2.5 rounded-full" data-width="80%"></div></div></div>
+                        <div class="skill-item"><div class="flex justify-between mb-1"><span class="font-medium text-gray-700">Express.js</span><span class="text-gray-500">85%</span></div><div class="w-full bg-gradient-to-r from-gray-200 to-gray-400 rounded-full h-2.5"><div class="skill-bar-fill bg-gray-700 h-2.5 rounded-full" data-width="85%"></div></div></div>
+                        <div class="skill-item"><div class="flex justify-between mb-1"><span class="font-medium text-gray-700">PostgreSQL</span><span class="text-gray-500">75%</span></div><div class="w-full bg-gradient-to-r from-sky-200 to-sky-400 rounded-full h-2.5"><div class="skill-bar-fill bg-sky-600 h-2.5 rounded-full" data-width="75%"></div></div></div>
+                        <div class="skill-item"><div class="flex justify-between mb-1"><span class="font-medium text-gray-700">REST API</span><span class="text-gray-500">90%</span></div><div class="w-full bg-gradient-to-r from-indigo-200 to-indigo-400 rounded-full h-2.5"><div class="skill-bar-fill bg-indigo-500 h-2.5 rounded-full" data-width="90%"></div></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="tab-content hidden">
+            <div class="bg-white rounded-xl shadow-lg p-4 sm:p-6 md:p-8 fade-in">
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 flex items-center"><i class="fas fa-rocket mr-3 text-orange-500"></i>Proyek</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="card-hover bg-gradient-to-r from-blue-50 to-blue-200 rounded-lg p-4 flex flex-col animate__animated animate__fadeInLeft">
+                        <div class="font-semibold text-gray-800 mb-1">Sistem Manajemen Inventaris</div>
+                        <div class="text-sm text-gray-600 mb-2">Web app untuk manajemen stok barang berbasis React & Node.js.</div>
+                        <div class="flex space-x-2 mt-auto">
+                            <span class="bg-blue-100 text-blue-600 px-2 py-1 rounded text-xs">React</span>
+                            <span class="bg-green-100 text-green-600 px-2 py-1 rounded text-xs">Node.js</span>
+                        </div>
+                    </div>
+                    <div class="card-hover bg-gradient-to-r from-teal-50 to-yellow-100 rounded-lg p-4 flex flex-col animate__animated animate__fadeInRight">
+                        <div class="font-semibold text-gray-800 mb-1">Landing Page UMKM</div>
+                        <div class="text-sm text-gray-600 mb-2">Website promosi produk UMKM dengan desain responsif.</div>
+                        <div class="flex space-x-2 mt-auto">
+                            <span class="bg-teal-100 text-teal-600 px-2 py-1 rounded text-xs">Tailwind</span>
+                            <span class="bg-yellow-100 text-yellow-600 px-2 py-1 rounded text-xs">JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="card-hover bg-gradient-to-r from-gray-50 to-indigo-100 rounded-lg p-4 flex flex-col animate__animated animate__fadeInUp">
+                        <div class="font-semibold text-gray-800 mb-1">API Restful E-Commerce</div>
+                        <div class="text-sm text-gray-600 mb-2">Backend API untuk toko online, autentikasi dan CRUD produk.</div>
+                        <div class="flex space-x-2 mt-auto">
+                            <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs">Express</span>
+                            <span class="bg-indigo-100 text-indigo-600 px-2 py-1 rounded text-xs">PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="tab-content hidden">
+            <div class="bg-white rounded-xl shadow-lg p-4 sm:p-6 md:p-8 fade-in">
+            <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 flex items-center">
+            <i class="fas fa-briefcase mr-3 text-gray-700"></i>Pengalaman
+            </h2>
+            <div class="space-y-4">
+            <div class="card-hover p-4 rounded-lg bg-gradient-to-r from-yellow-50 to-yellow-200 flex flex-col sm:flex-row items-start sm:items-center animate__animated animate__fadeInUp">
+            <i class="fas fa-university text-2xl text-yellow-600 mr-4"></i>
+            <div>
+                <div class="font-semibold text-gray-800">Intern – Kepabeanan Bea Dan Cukai</div>
+                <div class="text-sm text-gray-600">Bea Cukai Tanjung Perak Surabaya</div>
+                <p class="text-xs text-gray-500 mb-1">Surabaya | Mar 2024 – Apr 2024</p>
+                <ul class="list-disc list-inside leading-relaxed text-sm space-y-1">
+                <li>Membantu melakukan input dan pengarsipan dokumen kepabeanan di seksi ekspor</li>
+                <li>Menyelesaikan high-volume input data tepat waktu di perbendaharaan</li>
+                <li>Support IT & troubleshooting ringan internal</li>
+                <li>Ikut dalam penyuluhan peraturan kepabeanan</li>
+                </ul>
+            </div>
+            </div>
+            </div>
+            </div>
+        </section>
+
+        <!-- Certificates Section -->
+        <section id="certificates" class="tab-content hidden">
+            <div class="bg-white rounded-xl shadow-lg p-4 sm:p-6 md:p-8 fade-in">
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 flex items-center"><i class="fas fa-certificate mr-3 text-yellow-500"></i>Sertifikat</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="card-hover bg-gradient-to-r from-purple-50 to-purple-200 rounded-lg p-4 flex flex-col items-center animate__animated animate__fadeInLeft">
+                        <img src="assets/image/Sertifikat-141507 (1)-1.png" alt="Sertifikat Fullstack Web Development" class="w-full h-40 object-cover rounded mb-4 shadow">
+                        <div class="font-semibold text-gray-800">Fullstack Web Development</div>
+                        <div class="text-sm text-gray-600 mb-2">Eduwork - 2025</div>
+                        <a href="assets/image/Sertifikat-141507 (1)-1.png" target="_blank" class="mt-2 bg-purple-600 text-white px-4 py-2 rounded-full font-semibold hover:bg-purple-700 transition-colors flex items-center space-x-2">
+                            <i class="fas fa-eye"></i>
+                            <span>Lihat Sertifikat</span>
+                        </a>
+                    </div>
+                    <!-- <div class="card-hover bg-gradient-to-r from-green-50 to-green-200 rounded-lg p-4 flex flex-col items-center animate__animated animate__fadeInRight">
+                        <img src="https://dummyimage.com/300x200/22c55e/fff&text=React.js+Fundamentals" alt="Sertifikat React.js Fundamentals" class="w-full h-40 object-cover rounded mb-4 shadow">
+                        <div class="font-semibold text-gray-800">React.js Fundamentals</div>
+                        <div class="text-sm text-gray-600 mb-2">Dicoding - 2021</div>
+                        <a href="https://drive.google.com/file/d/sertifikat-reactjs" target="_blank" class="mt-2 bg-green-600 text-white px-4 py-2 rounded-full font-semibold hover:bg-green-700 transition-colors flex items-center space-x-2">
+                            <i class="fas fa-eye"></i>
+                            <span>Lihat Sertifikat</span> -->
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Contact Section -->
+    <footer id="contact" class="bg-white container mx-auto rounded-xl shadow-lg p-4 sm:p-6 md:p-8 mb-8">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-6 flex items-center">
+            <i class="fas fa-phone-alt mr-3 text-green-600"></i>Hubungi Saya
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            <a href="mailto:ahmad.rizki@email.com" class="contact-link flex items-center space-x-4 p-4 bg-gradient-to-r from-red-50 to-red-200 rounded-lg hover:bg-gray-100 transition-colors card-hover shadow-md active:scale-95">
+                <i class="fas fa-envelope text-2xl text-red-500"></i>
+                <div>
+                    <div class="font-semibold text-gray-800">Email</div>
+                    <div class="text-sm text-gray-600 truncate">ahmad.rizki@email.com</div>
+                </div>
+            </a>
+            <a href="https://linkedin.com/in/ahmadrizki" target="_blank" class="contact-link flex items-center space-x-4 p-4 bg-gradient-to-r from-blue-50 to-blue-200 rounded-lg hover:bg-gray-100 transition-colors card-hover shadow-md active:scale-95">
+                <i class="fab fa-linkedin text-2xl text-blue-700"></i>
+                <div>
+                    <div class="font-semibold text-gray-800">LinkedIn</div>
+                    <div class="text-sm text-gray-600">/in/ahmadrizki</div>
+                </div>
+            </a>
+            <a href="https://github.com/ahmadrizki" target="_blank" class="contact-link flex items-center space-x-4 p-4 bg-gradient-to-r from-gray-50 to-gray-200 rounded-lg hover:bg-gray-100 transition-colors card-hover shadow-md active:scale-95">
+                <i class="fab fa-github text-2xl text-gray-800"></i>
+                <div>
+                    <div class="font-semibold text-gray-800">GitHub</div>
+                    <div class="text-sm text-gray-600">/ahmadrizki</div>
+                </div>
+            </a>
+            <a href="https://wa.me/628984877678" class="contact-link flex items-center space-x-4 p-4 bg-gradient-to-r from-green-50 to-green-200 rounded-lg hover:bg-gray-100 transition-colors card-hover shadow-md active:scale-95">
+                <i class="fab fa-whatsapp text-2xl text-green-500"></i>
+                <div>
+                    <div class="font-semibold text-gray-800">WhatsApp</div>
+                    <div class="text-sm text-gray-600">+62 812...7890</div>
+                </div>
+            </a>
+        </div>
+        <style>
+            @media (max-width: 640px) {
+                #contact .grid {
+                    grid-template-columns: 1fr !important;
+                }
+                #contact .contact-link {
+                    flex-direction: row !important;
+                    padding: 12px !important;
+                    font-size: 1rem !important;
+                }
+                #contact i {
+                    font-size: 1.5rem !important;
+                }
+                #contact h2 {
+                    font-size: 1.3rem !important;
+                }
+            }
+        </style>
+        <script>
+            document.querySelectorAll('.contact-link').forEach(link => {
+                link.addEventListener('touchstart', function() {
+                    this.classList.add('bg-purple-100', 'text-purple-700', 'scale-95');
+                });
+                link.addEventListener('touchend', function() {
+                    setTimeout(() => {
+                        this.classList.remove('bg-purple-100', 'text-purple-700', 'scale-95');
+                    }, 300);
+                });
+                link.addEventListener('mouseenter', function() {
+                    this.classList.add('scale-105');
+                });
+                link.addEventListener('mouseleave', function() {
+                    this.classList.remove('scale-105');
+                });
+            });
+        </script>
+    </footer>
+
+    <!-- Footer -->
+    <div class="text-center py-8 text-gray-500 text-sm">
+        <p>© 2024 Ahmad Rizki - Fullstack Web Developer</p>
+        <p class="mt-1">Dibuat dengan <i class="fas fa-heart text-red-500"></i> di Semarang</p>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" title="Kembali ke atas"><i class="fas fa-arrow-up"></i></button>
+
+    <!-- Animate.css CDN for extra animation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.nav-item');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            function showTab(tabName) {
+                tabContents.forEach(content => {
+                    content.classList.add('hidden');
+                    content.classList.remove('visible');
+                });
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                const activeContent = document.getElementById(tabName);
+                if (activeContent) {
+                    activeContent.classList.remove('hidden');
+                    setTimeout(() => activeContent.classList.add('visible'), 10);
+                }
+                const activeButton = document.querySelector(`.nav-item[data-tab="${tabName}"]`);
+                if (activeButton) activeButton.classList.add('active');
+                triggerAnimations(activeContent);
+            }
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const tabName = this.getAttribute('data-tab');
+                    showTab(tabName);
+                });
+            });
+
+            // Typing animation
+            const titleElement = document.getElementById('title');
+            const textToType = 'Fullstack Web Developer & UI/UX Enthusiast';
+            let typeIndex = 0;
+            function typeWriter() {
+                if (typeIndex < textToType.length) {
+                    titleElement.textContent += textToType.charAt(typeIndex);
+                    typeIndex++;
+                    setTimeout(typeWriter, 100);
+                }
+            }
+            setTimeout(typeWriter, 1000);
+
+            // Intersection Observer for fade-in and skill bars
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const delay = Array.from(entry.target.parentElement.children).indexOf(entry.target) * 100;
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, delay);
+                        if (entry.target.classList.contains('skill-item')) {
+                            const bar = entry.target.querySelector('.skill-bar-fill');
+                            if (bar) bar.style.width = bar.dataset.width;
+                        }
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            function triggerAnimations(container) {
+                if (!container) return;
+                const elementsToAnimate = container.querySelectorAll('.fade-in, .skill-item');
+                elementsToAnimate.forEach(el => observer.observe(el));
+            }
+
+            // Show first tab
+            showTab('about');
+
+            // Back to top button
+            const backToTop = document.getElementById('backToTop');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTop.style.display = 'block';
+                } else {
+                    backToTop.style.display = 'none';
+                }
+            });
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // Dark mode toggle for desktop
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            if (darkModeToggle) {
+                darkModeToggle.addEventListener('click', toggleDarkMode);
+            }
+            // Optional: auto dark mode by system
+            if(window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.classList.add('dark');
+                darkModeText.textContent = 'Light Mode';
+            }
+        });
+
+        // Smooth scroll
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                if (sectionId !== 'contact') {
+                    setTimeout(() => {
+                        if (typeof showTab === 'function') showTab(sectionId);
+                        else document.querySelector(`.nav-item[data-tab="${sectionId}"]`).click();
+                    }, 300);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
